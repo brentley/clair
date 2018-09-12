@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/sh
+
+set -vx
 
 # read env variables and write the clair config file
 cd /

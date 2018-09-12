@@ -21,8 +21,10 @@ RUN export CLAIR_VERSION=$(git describe --tag --always --dirty) && \
 
 FROM alpine:3.8
 COPY --from=build /go/src/github.com/coreos/clair/clair /clair
+ADD config.yaml.sample envconfig.sh /
+RUN mkdir -p /etc/clair/
 RUN apk add --no-cache git rpm xz ca-certificates dumb-init
-ENTRYPOINT ["/usr/bin/dumb-init", "--", "/clair"]
-CMD ["bash", "-c", "/envconfig.sh && exec /clair"]
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD ["sh", "-c", "/envconfig.sh && exec /clair"]
 VOLUME /config
 EXPOSE 6060 6061
