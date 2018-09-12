@@ -25,6 +25,6 @@ ADD config.yaml.sample envconfig.sh /
 RUN mkdir -p /etc/clair/
 RUN apk add --no-cache bash git rpm xz ca-certificates dumb-init
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-CMD ["sh", "-c", "/envconfig.sh && exec /clair"]
+CMD ["bash", "-c", "/envconfig.sh && exec /clair"]
 VOLUME /config
 EXPOSE 6060 6061
