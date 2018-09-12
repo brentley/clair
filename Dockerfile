@@ -22,6 +22,7 @@ RUN export CLAIR_VERSION=$(git describe --tag --always --dirty) && \
 FROM alpine:3.8
 COPY --from=build /go/src/github.com/coreos/clair/clair /clair
 ADD config.yaml.sample envconfig.sh /
+RUN ["chmod", "+x", "/envconfig.sh"]
 RUN mkdir -p /etc/clair/
 RUN apk add --no-cache bash git rpm xz ca-certificates dumb-init
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
