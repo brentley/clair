@@ -3,6 +3,9 @@ environments:
   - name: acceptance
     provider: ecs-fargate
 service:
+  port: 6060
+  pathPatterns:
+  - /*
   pipeline:
       acceptance:
       production:
