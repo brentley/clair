@@ -1,0 +1,19 @@
+---
+environments:
+  - name: acceptance
+    provider: ecs-fargate
+service:
+  pipeline:
+      acceptance:
+      production:
+        disabled: true
+  environment:
+    PGUSER: ${DatabaseMasterUsername}
+    PGPASSWORD: ${DatabaseMasterPassword}
+    PGDATABASE: ${DatabaseName}
+  database:
+    name: clair
+    engine: postgres
+    masterUsername: clair
+    iamAuthentication: true
+    allocatedStorage: 100
